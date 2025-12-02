@@ -1,1 +1,3 @@
-.dSYM
+*/.dSYM
+*/test.txt
+main
