@@ -37,7 +37,6 @@ This function applies the above logic to each bank in the input and sums the
 resulting chosen numbers as long long.
 */
 
-
 long long calculateJoltage(std::ifstream& input, int n)
 {
     input.clear();
