@@ -60,9 +60,9 @@ int zeroes_during_rotation(std::ifstream& input)
     return password;
 }
 
-int main() 
+int main(int argc, char* argv[])
 {
-    std::ifstream input("input.txt");
+    std::ifstream input(argv[1]);
 
     int pass1 = zeroes_after_rotation(input);
     std::cout << "Password for task 1 is " << pass1 << "\n";
