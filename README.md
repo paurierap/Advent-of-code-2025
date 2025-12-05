@@ -6,14 +6,14 @@ Repository with the solutions for this year's edition. Every directory contains 
 
 For most days, just save an input file `input.txt` in the corresponding directory and create an executable from `main.cpp` with your compiler of choice, e.g.
 ```bash
-$ g++ main.cpp -o main
+g++ main.cpp -o main
 ```
 and run the executable from the command line as
 ```bash
-$ ./main input.txt
+./main input.txt
 ```
 
 In some cases, where a newer C++ standard is required, a Makefile is provided. Therefore, to create the executable, just `make` it
 ```bash
-$ make
+make
 ```
