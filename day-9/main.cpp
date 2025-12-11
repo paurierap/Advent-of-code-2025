@@ -4,10 +4,6 @@
 #include <sstream>
 #include <vector>
 
-bool onSegment(const std::vector<int>&, const std::vector<int>&, const std::vector<int>&);
-bool isPointEnclosed(const std::vector<int>&, const std::vector<std::vector<int>>&);
-int orientation(const std::vector<int>&, const std::vector<int>&, const std::vector<int>&);
-bool doIntersect(const std::vector<std::vector<int>>&, const std::vector<std::vector<int>>&);
 bool isRectangleEnclosed(const std::vector<int>&, const std::vector<int>&, const std::vector<std::vector<int>>&);
 long long calculateArea(const std::vector<int>&, const std::vector<int>&);
 
@@ -65,6 +61,7 @@ int main(int argc, char* argv[])
     std::cout << "The largest area of any rectangle we can make in Part I is " << partI(polygon) << "\n";
 
     long long largestRectanglePartII = partII(polygon);
+
     std::cout << "The largest area of any rectangle we can make in Part II is " << largestRectanglePartII << "\n";
 
     return EXIT_SUCCESS;
