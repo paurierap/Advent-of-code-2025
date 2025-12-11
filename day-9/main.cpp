@@ -1,13 +1,16 @@
+#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
 
-bool onSegment(const std::vector<int>&, const std::vector<int>&, const std::vector<int>&);
-bool isPointEnclosed(const std::vector<int>&, const std::vector<std::vector<int>>&);
-int orientation(const std::vector<int>&, const std::vector<int>&, const std::vector<int>&);
-bool doIntersect(const std::vector<std::vector<int>>&, const std::vector<std::vector<int>>&);
+// cache[y] = vector of {x_start, x_end} intervals that are INSIDE at that y
+static std::unordered_map<int, std::vector<std::pair<int,int>>> horizontalInside;
+
+// cache[x] = vector of {y_start, y_end} intervals that are INSIDE at that x
+static std::unordered_map<int, std::vector<std::pair<int,int>>> verticalInside;
+
 bool isRectangleEnclosed(const std::vector<int>&, const std::vector<int>&, const std::vector<std::vector<int>>&);
 long long calculateArea(const std::vector<int>&, const std::vector<int>&);
 
@@ -38,10 +41,8 @@ long long partII(const std::vector<std::vector<int>>& polygon)
     long long largestArea = 0;
     int n = polygon.size();
     
-    std::cout << "Progress counter on corners visited for Part II: \n";
     for (int i = 0; i < n; ++i)
     {
-        std::cout << "Visited " << i << " of " << n << " corners \n";
         for (int j = i + 1; j < n; ++j) 
         {
             int area = calculateArea(polygon[i], polygon[j]);
@@ -64,8 +65,13 @@ int main(int argc, char* argv[])
 
     std::cout << "The largest area of any rectangle we can make in Part I is " << partI(polygon) << "\n";
 
+    const auto start{std::chrono::steady_clock::now()};
     long long largestRectanglePartII = partII(polygon);
+    const auto finish{std::chrono::steady_clock::now()};
+    auto time = std::chrono::duration_cast<std::chrono::milliseconds>(finish - start).count();
+
     std::cout << "The largest area of any rectangle we can make in Part II is " << largestRectanglePartII << "\n";
+    std::cout << "Code execution for Part II took " << time << " ms\n";
 
     return EXIT_SUCCESS;
 }
