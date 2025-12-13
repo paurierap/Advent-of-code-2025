@@ -1,0 +1,58 @@
+\section*{Optimization Problem — Button Press Counters}
+
+\subsection*{Problem Description}
+We are given a finite set of buttons. Pressing a button increments a fixed subset of counters by one.
+Each button may be pressed any non-negative integer number of times.
+Given a target vector specifying the desired final value of each counter, the objective is to reach the target using the minimum total number of button presses.
+
+\subsection*{Variables}
+Let $x\in\mathbb{Z}_{\geq0}$ denote the number of times button $j$ is pressed.
+
+\subsection*{Data}
+Let $A_{k,j}\in\{0,1\}$ be the incidence matrix, where
+\begin{equation}
+    A_{k,j} = 
+    \begin{cases}
+    1 
+    0  
+    \end{cases}
+\end{equation}
+
+Let $t_k\in\mathbb{Z}_{\geq0}$ denote the target value of counter $k$.
+
+\subsection*{Constraints}
+For each counter $k$, the total number of increments must equal the target
+\begin{equation}
+    \sum_j A_{k,j}x_j = t_k
+\end{equation}
+ 
+\subsection*{Objective}
+Minimize the total number of button presses:
+\begin{equation}
+    \min \sum_j x_j    
+\end{equation}
+
+\subsection*{Optimization Type}
+This problem is an \emph{Integer Linear Program (ILP)} with:
+\begin{itemize}
+\item Linear objective
+\item Linear equality constraints
+\item Non-negative integer decision variables
+\end{itemize}
+
+\subsection*{Solution Approach Using GLPK}
+The problem can be solved using the GNU Linear Programming Kit (GLPK) as a mixed-integer program.
+\begin{enumerate}
+\item Introduce one integer variable $x_j$ per button.
+\item Add one equality constraint per counter.
+\item Set the objective to minimize $\sum_j x_j$.
+\item Solve the resulting MIP using GLPK's integer optimizer.
+\end{enumerate}
+
+\subsection*{Remarks}
+\begin{itemize}
+\item The formulation is efficient due to the small number of buttons and moderate target values.
+\item The constraint matrix is sparse and binary.
+\item This approach applies to the counting version of the problem.
+\item The on/off (parity) version of the problem belongs to linear algebra over $\mathbb{F}_2$and is better solved using bitwise methods rather than ILP.
+\end{itemize}
