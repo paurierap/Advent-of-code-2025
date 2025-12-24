@@ -5,6 +5,19 @@
 #include <fstream>
 #include <vector>
 
+/*
+Day 12 — Packing Problem
+
+Approach:
+- Generate all rotations/reflections of patterns
+- Backtracking search to place patterns without overlap
+- Use pruning on pattern order and area constraints
+- Return existence (not count)
+
+This works within AoC puzzle input bounds.
+*/
+
+
 int main(int argc, char* argv[])
 {
     std::ifstream input(argv[1]);
